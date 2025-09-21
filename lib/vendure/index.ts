@@ -1,8 +1,32 @@
+import { readFragment } from '@/gql/graphql';
+import activeChannelFragment from '@/lib/vendure/fragments/active-channel';
+import orderFragment from '@/lib/vendure/fragments/order';
+import productFragment from '@/lib/vendure/fragments/product';
+import { authenticate } from '@/lib/vendure/mutations/customer';
+import { updateCustomerMutation } from '@/lib/vendure/mutations/update-customer';
+import {
+  activeCustomerFragment,
+  getActiveCustomerQuery
+} from '@/lib/vendure/queries/active-customer';
+import { getCustomerOrdersQuery, getOrderByCodeQuery } from '@/lib/vendure/queries/customer-orders';
+import { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import { ResultOf, VariablesOf } from 'gql.tada';
+import { DocumentNode, print } from 'graphql';
 import { TAGS } from 'lib/constants';
 import { isVendureError } from 'lib/type-guards';
 import { revalidateTag } from 'next/cache';
-import { cookies, headers } from 'next/headers';
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
+import activeOrderFragment from './fragments/active-order';
+import { facetFragment, facetValueFragment } from './fragments/facet';
+import searchResultFragment from './fragments/search-result';
+import {
+  addItemToOrder,
+  adjustOrderLineMutation,
+  removeOrderLineMutation
+} from './mutations/active-order';
+import { getActiveChannelQuery } from './queries/active-channel';
+import { getActiveOrderQuery } from './queries/active-order';
 import {
   collectionFragment,
   getCollectionFacetValuesQuery,
@@ -10,33 +34,9 @@ import {
   getCollectionQuery,
   getCollectionsQuery
 } from './queries/collection';
+import { getFacetsQuery } from './queries/facets';
 import { getMenuQuery } from './queries/menu';
 import { getProductQuery, getProductsQuery } from './queries/product';
-import {
-  addItemToOrder,
-  adjustOrderLineMutation,
-  removeOrderLineMutation
-} from './mutations/active-order';
-import { DocumentNode, print } from 'graphql';
-import { getActiveOrderQuery } from './queries/active-order';
-import { getActiveChannelQuery } from './queries/active-channel';
-import { getFacetsQuery } from './queries/facets';
-import { facetFragment, facetValueFragment } from './fragments/facet';
-import activeOrderFragment from './fragments/active-order';
-import searchResultFragment from './fragments/search-result';
-import { authenticate } from '@/lib/vendure/mutations/customer';
-import { updateCustomerMutation } from '@/lib/vendure/mutations/update-customer';
-import { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import {
-  activeCustomerFragment,
-  getActiveCustomerQuery
-} from '@/lib/vendure/queries/active-customer';
-import { getCustomerOrdersQuery, getOrderByCodeQuery } from '@/lib/vendure/queries/customer-orders';
-import orderFragment from '@/lib/vendure/fragments/order';
-import { VariablesOf, ResultOf } from 'gql.tada';
-import { readFragment } from '@/gql/graphql';
-import activeChannelFragment from '@/lib/vendure/fragments/active-channel';
-import productFragment from '@/lib/vendure/fragments/product';
 
 const endpoint = process.env.VENDURE_API_ENDPOINT || 'http://localhost:3000/shop-api';
 

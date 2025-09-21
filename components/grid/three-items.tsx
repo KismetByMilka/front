@@ -1,10 +1,9 @@
+import searchResultFragment from '@/lib/vendure/fragments/search-result';
 import { GridTileImage } from 'components/grid/tile';
+import { ResultOf } from 'gql.tada';
 import { getActiveChannel, getCollectionProducts } from 'lib/vendure';
 import Link from 'next/link';
-import { useActiveChannel } from '../cart/channel-context';
 import { getSearchResultPrice } from '../../lib/utils';
-import { ResultOf } from 'gql.tada';
-import searchResultFragment from '@/lib/vendure/fragments/search-result';
 
 async function ThreeItemGridItem({
   item,

@@ -5,10 +5,10 @@ import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
 import { Fragment, Suspense, useEffect, useState } from 'react';
 
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import Search, { SearchSkeleton } from './search';
-import { ResultOf } from 'gql.tada';
 import { collectionFragment } from '@/lib/vendure/queries/collection';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import { ResultOf } from 'gql.tada';
+import Search, { SearchSkeleton } from './search';
 
 export default function MobileMenu({ menu }: { menu: ResultOf<typeof collectionFragment>[] }) {
   const pathname = usePathname();
@@ -36,9 +36,9 @@ export default function MobileMenu({ menu }: { menu: ResultOf<typeof collectionF
       <button
         onClick={openMobileMenu}
         aria-label="Open mobile menu"
-        className="flex h-11 w-11 items-center justify-center rounded-md border border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
+        className="flex h-11 w-11 items-center justify-center rounded-md border-neutral-200 text-black transition-colors md:hidden dark:border-neutral-700 dark:text-white"
       >
-        <Bars3Icon className="h-4" />
+        <Bars3Icon className="h-6" />
       </button>
       <Transition show={isOpen}>
         <Dialog onClose={closeMobileMenu} className="relative z-50">

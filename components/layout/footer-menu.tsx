@@ -1,11 +1,11 @@
 'use client';
 
+import { collectionFragment } from '@/lib/vendure/queries/collection';
 import clsx from 'clsx';
+import { ResultOf } from 'gql.tada';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { ResultOf } from 'gql.tada';
-import { collectionFragment } from '@/lib/vendure/queries/collection';
 
 export function FooterMenuItem({ item }: { item: ResultOf<typeof collectionFragment> }) {
   const pathname = usePathname();

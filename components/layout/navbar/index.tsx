@@ -1,3 +1,7 @@
+import OpenSignIn from '@/components/account/open-sign-in';
+import { UserDropdown } from '@/components/account/user-dropdown';
+import { readFragment } from '@/gql/graphql';
+import { collectionFragment } from '@/lib/vendure/queries/collection';
 import CartModal from 'components/cart/modal';
 import LogoSquare from 'components/logo-square';
 import { getActiveCustomer, getMenu } from 'lib/vendure';
@@ -5,10 +9,6 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
 import Search, { SearchSkeleton } from './search';
-import OpenSignIn from '@/components/account/open-sign-in';
-import { UserDropdown } from '@/components/account/user-dropdown';
-import { readFragment } from '@/gql/graphql';
-import { collectionFragment } from '@/lib/vendure/queries/collection';
 
 const { SITE_NAME } = process.env;
 
