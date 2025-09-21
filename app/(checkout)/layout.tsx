@@ -1,6 +1,6 @@
-import { PropsWithChildren } from 'react';
-import Link from 'next/link';
 import LogoSquare from '@/components/logo-square';
+import Link from 'next/link';
+import { PropsWithChildren } from 'react';
 
 const { SITE_NAME } = process.env;
 
@@ -18,9 +18,7 @@ export default async function CheckoutLayout({ children }: PropsWithChildren) {
             {SITE_NAME}
           </div>
         </Link>
-          <div>
-              Support Actions
-          </div>
+        <div>Support Actions</div>
       </header>
       <div className="mt-20 grid grid-cols-[1fr_400px]">
         <div>{children}</div>
