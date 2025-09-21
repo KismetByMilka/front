@@ -1,3 +1,4 @@
+@import url("https://use.typekit.net/nsj6anp.css");
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -143,8 +144,30 @@ button {
 @layer base {
   * {
     @apply border-border;
+    font-family: "brandon-grotesque", sans-serif;
   }
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@font-face {
+  font-family: "kapra-neue-pro";
+  src: url("../fonts/KapraNeue-SemiBold-Condensed-Rounded.woff2")
+    format("woff2");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "etrusco-now";
+  src: url("../fonts/EtruscoNowCondensed-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@theme {
+  --font-kapra-neue-pro: "kapra-neue-pro", sans-serif;
+  --font-etrusco-now: "etrusco-now", sans-serif;
+  --color-product-card: #f8f5f6;
 }

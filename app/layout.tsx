@@ -3,7 +3,6 @@ import { ToastProvider } from '@/ui-components/ui/toast';
 import { Toaster } from '@/ui-components/ui/toaster';
 import { CartProvider } from 'components/cart/cart-context';
 import { WelcomeToast } from 'components/welcome-toast';
-import { GeistSans } from 'geist/font/sans';
 import { ensureStartsWith } from 'lib/utils';
 import { getActiveChannel, getActiveOrder } from 'lib/vendure';
 import { cookies } from 'next/headers';
@@ -45,8 +44,8 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 
   return (
     <ToastProvider>
-      <html lang="en" className={GeistSans.variable}>
-        <body className="bg-neutral-50 text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
+      <html lang="en">
+        <body className="bg-white text-black selection:bg-teal-300 dark:bg-neutral-900 dark:text-white dark:selection:bg-pink-500 dark:selection:text-white">
           <ChannelProvider channelPromise={activeChannel}>
             <CartProvider activeOrderPromise={activeOrder}>
               <main>
